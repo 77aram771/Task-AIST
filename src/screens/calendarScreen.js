@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useState} from 'react';
+import React, {useLayoutEffect, useState, useEffect} from 'react';
 import {
 	ScrollView,
 	View,
@@ -8,19 +8,19 @@ import {
 	Image,
 	TouchableOpacity,
 	ImageBackground,
-} from 'react-native'
-import {Black, Viking, White_Smoke} from "../utils/colors";
-import {Height, Width} from "../utils/constants";
-import {Video} from 'expo-av'
-import VideoPlayer from 'expo-video-player'
-import {ScrollableTabView, ScrollableTabBar,} from '@valdio/react-native-scrollable-tabview'
+} from 'react-native';
+import {Video} from 'expo-av';
+import VideoPlayer from 'expo-video-player';
+
+import {Black, Viking, White_Smoke} from '../utils/colors';
+import {Height, Width} from '../utils/constants';
+
+import {ScrollableTabView, ScrollableTabBar} from '@valdio/react-native-scrollable-tabview';
 
 export default function calendarScreen({navigation}) {
 
 	const [playVideo, setPlayVideo] = useState(false);
-
 	const [isOpen, setIsOpen] = useState(false);
-
 	const [buttonChange, setButtonChange] = useState(false);
 
 	useLayoutEffect(() => {
@@ -28,6 +28,10 @@ export default function calendarScreen({navigation}) {
 			headerShown: false,
 		});
 	}, []);
+
+	useEffect(() => {
+		() => setPlayVideo(false)
+	}, [])
 
 	function openModal() {
 		setIsOpen(!isOpen);
@@ -466,7 +470,7 @@ export default function calendarScreen({navigation}) {
 							? (
 								<VideoPlayer
 									videoProps={{
-										shouldPlay: true,
+										shouldPlay: playVideo,
 										resizeMode: Video.RESIZE_MODE_CONTAIN,
 										source: {
 											uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',

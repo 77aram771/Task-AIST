@@ -1,6 +1,7 @@
 import React, {useLayoutEffect} from 'react';
-import {ScrollView, View, Text} from 'react-native'
-import {Viking, White_Smoke} from "../utils/colors";
+import {ScrollView, Text, View} from 'react-native';
+
+import {Viking, White_Smoke} from '../utils/colors';
 
 export default function surveysScreen ({navigation}) {
 

@@ -1,16 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import * as Font from "expo-font";
 import {View, Image, ActivityIndicator, Text, YellowBox} from 'react-native';
+import * as Font from "expo-font";
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
 import {Viking} from "./src/utils/colors";
+
+// Screens
 import calendarScreen from "./src/screens/calendarScreen";
 import surveysScreen from "./src/screens/surveysScreen";
 import resultsScreen from "./src/screens/resultsScreen";
 import libraryScreen from "./src/screens/libraryScreen";
 import profileScreen from "./src/screens/profileScreen";
-import {Height, Width} from "./src/utils/constants";
 
 console.disableYellowBox = true;
 
@@ -34,7 +36,7 @@ const ResultsStack = createStackNavigator();
 const OrdersStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
 
-export default function App() {
+export default () => {
 
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -84,7 +86,7 @@ export default function App() {
 		);
 	}
 
-	const TabsStackScreen = () => {
+	function TabsStackScreen () {
 		return (
 			<Tab.Navigator
 				screenOptions={({route}) => ({
